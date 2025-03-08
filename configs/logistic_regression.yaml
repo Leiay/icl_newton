@@ -1,0 +1,30 @@
+inherit:
+    - base.yaml
+
+model:
+    model_type: tf
+    n_dims: 5
+    n_embd: 256
+    output_type: "w"
+    rm_pos_embd: False
+
+training:
+    task_name: logistic_regression
+    dims: 5
+    points: 26
+    train_steps: 1000
+    warmup_steps: 0
+    lr_decay_steps: 900
+
+    grad_clip: -1
+    activation_threshold: -1
+
+    curriculum:
+        dims:
+            start: 5
+            end: 5
+        points:
+            start: 26
+            end: 26
+
+out_dir: ./results/logistic_regression

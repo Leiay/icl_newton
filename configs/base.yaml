@@ -1,0 +1,54 @@
+wandb:
+    project: icl_newton
+    log_every_steps: 100  # log every 100 iterations, not epochs
+
+gpu:
+    cuda: True
+
+model:
+    model_type: lsa
+    n_dims: 10
+    n_positions: 101
+    d_zeros: 10
+    n_embd: 64
+    n_layer: 1
+    n_head: 4
+    rm_pos_embd: True
+
+training:
+    task_name: noisy_linear_regression
+    dims: 10
+    points: 51
+    std: 0
+    cond: 1
+
+    batch_size: 2000
+    local_batch_size: 500
+
+    learning_rate: 0.0001
+    min_lr: 0.00005
+    weight_decay: 0.0
+
+    grad_clip: 10
+    activation_threshold: 10
+
+    curriculum:
+        dims:
+            start: 2
+            end: 10
+            inc: 1
+            interval: 5000
+        points:
+            start: 11
+            end: 51
+            inc: 5
+            interval: 5000
+
+    train_steps: 100000
+    warmup_steps: 10000
+    lr_decay_steps: 90000
+    save_every_steps: 20000
+    keep_every_steps: 20000
+
+out_dir: ./results/lsa_linear
+debug_mode: False

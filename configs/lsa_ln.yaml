@@ -1,0 +1,11 @@
+inherit:
+    - base.yaml
+
+model:
+    model_type: lsa+ln
+
+training:
+    grad_clip: -1
+    activation_threshold: -1
+
+out_dir: ./results/lsa_ln_linear
